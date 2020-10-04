@@ -1,0 +1,21 @@
+.search input{
+    background: #FBFBFB;
+    border: 1px solid #D6D6D6;
+    box-sizing: border-box;
+    border-radius: 8px;
+    padding: 7px 10px;
+    width: 270px;
+}
+.search button{
+    margin-top:-5px;
+    margin-left:-10px;
+     background-color: #3F90FC;
+}
+
+.header ul li{
+    list-style: none;
+    float:left;
+}
+.header a{
+    color:black;
+}

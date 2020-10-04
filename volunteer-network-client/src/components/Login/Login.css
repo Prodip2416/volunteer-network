@@ -1,0 +1,25 @@
+.login-div{
+    background-color: #FFFFFF;
+    height: 400px;
+    width:500px;
+    position: absolute;
+    border-radius: 5px;
+}
+.social-img{
+    width:25px;
+}
+.social-btn{
+    margin-top:100px;
+    width:95%;
+    background: #FFFFFF;
+    border: 1px solid #C7C7C7;
+    box-sizing: border-box;
+    border-radius: 57px;
+    cursor: pointer;
+}
+.login-btn{
+    margin-top:100px;
+}
+.border{
+    border:1px solid gray !important;
+}

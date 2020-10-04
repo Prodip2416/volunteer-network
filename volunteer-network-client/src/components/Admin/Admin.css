@@ -1,0 +1,22 @@
+.admin ul li{
+    list-style-type: none;
+    cursor: pointer;
+}
+.user-list {
+    min-height:770px;
+    background-color:#E5E5E5;
+}
+.volunteer img{
+    background-color: #e70909;
+     cursor: pointer;
+}
+.form-bg{
+    background-color:white;
+    border-radius: 15px;
+}
+.admin img{
+    width:20px;
+}
+.active{
+    color: #207FEE;
+}

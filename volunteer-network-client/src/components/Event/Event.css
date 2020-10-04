@@ -1,0 +1,19 @@
+.single-item{
+   margin-bottom: 10px;
+   border:none;
+   cursor: pointer;
+}      
+.single-item img{
+   height:260px;
+}      
+.single-item h5{
+   color: white;
+}      
+.single-item:hover{
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 1);
+}      
+.title{
+   margin-top:-10px;
+   height:80px;
+   border-radius:0px 0px 10px 10px;
+}
