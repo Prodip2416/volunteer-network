@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
 const MongoClient = require('mongodb').MongoClient;
+const ObjectID = require('mongodb').ObjectID;
 
 const app = express();
 app.use(bodyParser.json());
@@ -17,15 +18,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 
 client.connect(err => {
     const eventCollections = client.db(process.env.DB_NAME).collection("events");
-    console.log('sfsfds')
-
-    app.post('/addEvent', (req, res) => {
-        const events = req.body;
-        // eventCollections.insertMany(events)
-        //     .then(result => {
-        //         res.send(result.insertedCount > 0);
-        //     })
-    });
+    const volunteerCollections = client.db(process.env.DB_NAME).collection("volunteers");
 
     app.get('/events', (req, res) => { // get all events
         eventCollections.find({})
@@ -33,6 +26,50 @@ client.connect(err => {
                 res.send(documents);
             })
     });
+
+    app.post('/addEvent', (req, res) => { // add single event
+        eventCollections.insertOne(req.body)
+            .then(result => {
+                res.send(result.insertedCount > 0);
+            })
+    });
+
+    app.get('/events/:key', (req, res) => { // get single event     
+        eventCollections.find({ _id: ObjectID(req.params.key) })
+            .toArray((err, documents) => {
+                res.send(documents[0]);
+            })
+    });
+
+    app.get('/getVolunteers', (req, res) => { // get all volunteers
+        volunteerCollections.find({})
+            .toArray((err, documents) => {
+                res.send(documents);
+            })
+    });
+
+    app.post('/addVolunteer', (req, res) => {
+        volunteerCollections.insertOne(req.body)
+            .then(result => {
+                res.send(result.insertedCount > 0);
+            })
+    });
+
+    app.get('/getEventsByUser', (req, res) => { // get all events ny user
+        const userEmail = req.query.email;
+        volunteerCollections.find({ email: userEmail })
+            .toArray((err, documents) => {
+                res.send(documents);
+            })
+    });
+
+    app.delete('/delete/:id', (req, res) => {
+        volunteerCollections.deleteOne({ _id: ObjectID(req.params.id) })
+            .then(result => {
+                res.send(result.deletedCount > 0);
+            })
+    })
+
 });
 
 app.listen(5000);
